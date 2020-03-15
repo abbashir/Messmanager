@@ -12,9 +12,13 @@
             <form method="POST" action="{{route('meal.store')}}">
                 @csrf
                 <div class="form-group">
+                    <label for="inputEmail3" class="col-form-label">Ledger</label>
+                    <input class="form-control" name="date" value="{{$ledgers[0]['name']}}" disabled>
+                </div>
+
+                <div class="form-group">
                     <label for="inputEmail3" class="col-form-label">Select Date</label>
                     <input id="datepicker" class="form-control" name="date" placeholder="Select" required>
-
                 </div>
                 @foreach($borders as $border)
                     <input type="hidden" name="border_id[]" value="{{$border->id}}">
@@ -53,5 +57,10 @@
         $('#datepicker').datepicker({
             uiLibrary: 'bootstrap'
         });
+    </script>
+    {{--dropdown active--}}
+    <script>
+        $('#meals li:nth-child(1)').addClass('active');
+        $('#meals').addClass('show');
     </script>
 @endsection
