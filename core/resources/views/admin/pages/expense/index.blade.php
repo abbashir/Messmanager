@@ -56,8 +56,8 @@
 @section('scripts')
     {{--dropdown active--}}
     <script>
-        $('#meals li:nth-child(2)').addClass('active');
-        $('#meals').addClass('show');
+        $('#expenses li:nth-child(2)').addClass('active');
+        $('#expenses').addClass('show');
     </script>
 
     {{--script for modal--}}

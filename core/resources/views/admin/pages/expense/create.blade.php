@@ -2,48 +2,61 @@
 
 @section('title', 'Add Meal')
 @section('body')
-    <h2 class="mb-4">Add Meal</h2>
+    <h2 class="mb-4">Add Expense</h2>
     <div class="card mb-4">
         <div class="card-header bg-white font-weight-bold">
-            Add Meal
+            Add Expense
+
+            <span class=" float-right">
+                 Total expense: <span class="text-danger"> <span id="totalPrice">00</span></span> TK.
+            </span>
 
         </div>
         <div class="card-body">
-            <form method="POST" action="{{route('meal.store')}}">
+            <form method="POST" action="{{route('expense.store')}}">
                 @csrf
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-form-label">Ledger</label>
-                    <input class="form-control" name="date" value="{{$ledgers[0]['name']}}" disabled>
-                </div>
-
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-form-label">Select Date</label>
-                    <input id="datepicker" class="form-control" name="date" placeholder="Select" required>
-                </div>
-                @foreach($borders as $border)
-                    <input type="hidden" name="border_id[]" value="{{$border->id}}">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">{{$border->name}}</label>
-                        <input type="number" step="0.5" name="meal_quantity[]" class="form-control"
-                               placeholder="meal quantity" required>
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-form-label">Select Date</label>
+                            <input id="datepicker" class="form-control" name="expense_date" placeholder="select date"
+                                   required>
+                        </div>
                     </div>
-                @endforeach
+                </div>
+                <div class="field_wrapper">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input type="text" name="item_name[]" class="form-control"
+                                       placeholder="Item Name" required>
+                            </div>
 
-{{--                <div class="form-group row">--}}
-{{--                    <label for="inputEmail3" class="col-sm-4 col-form-label">Select Date</label>--}}
-{{--                    <div class="col-sm-6">--}}
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <input type="text" name="quantity[]" class="form-control"
+                                       placeholder="Quantity [optional]" required>
+                            </div>
 
-{{--                        <input id="datepicker" class="form-control" name="date" placeholder="Select" required>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="form-group row">--}}
-{{--                    <label class="col-sm-4 col-form-label">Kanon</label>--}}
-{{--                    <div class="col-sm-6">--}}
-{{--                        <input type="number" step="0.5" name="kanon_meal_quantity" class="form-control"--}}
-{{--                               placeholder="meal quantity" required>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-                <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <input type="number" name="price[]" class="form-control item_price"
+                                       placeholder="Price" required>
+                            </div>
+
+                        </div>
+                        <div class="col-md-2">
+                            <a href="javascript:void(0);" class="add_button" title="Add field"><i
+                                    class="fa fa-plus-circle"> </i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mt-3">
+                    <button type="submit" class="btn btn-secondary btn-lg btn-block customs-btn-bd">Submit</button>
+                </div>
             </form>
         </div>
     </div>
@@ -60,7 +73,70 @@
     </script>
     {{--dropdown active--}}
     <script>
-        $('#meals li:nth-child(1)').addClass('active');
-        $('#meals').addClass('show');
+        $('#expenses li:nth-child(1)').addClass('active');
+        $('#expenses').addClass('show');
+    </script>
+
+    {{--    dynamic field--}}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var maxField = 20; //Input fields increment limitation
+            var addButton = $('.add_button'); //Add button selector
+            var wrapper = $('.field_wrapper'); //Input field wrapper
+            var fieldHTML = '<div class="row">         <div class="col-md-4">' +
+                '                            <div class="form-group">' +
+                '                                <input type="text" name="item_name[]" class="form-control"' +
+                '                                       placeholder="Item Name" required>' +
+                '                            </div>' +
+                '' +
+                '                        </div>' +
+                '                        <div class="col-md-3">' +
+                '                            <div class="form-group">' +
+                '                                <input type="text" name="quantity[]" class="form-control"' +
+                '                                       placeholder="Quantity [optional]" required>' +
+                '                            </div>' +
+                '' +
+                '                        </div>' +
+                '                        <div class="col-md-3">' +
+                '                            <div class="form-group">' +
+                '                                <input type="number" name="price[]" class="form-control item_price"' +
+                '                                       placeholder="Price" required>' +
+                '                            </div>' +
+                '' +
+                '                        </div class="col-md-2"> <a href="javascript:void(0);" class="remove_button"><i class="fa fa-minus-circle"> </i></a></div>'; //New input field html
+            var x = 1; //Initial field counter is 1
+
+            //Once add button is clicked
+            $(addButton).click(function () {
+                //Check maximum number of input fields
+                if (x < maxField) {
+                    x++; //Increment field counter
+                    $(wrapper).append(fieldHTML); //Add field html
+                }
+            });
+
+            //Once remove button is clicked
+            $(wrapper).on('click', '.remove_button', function (e) {
+                e.preventDefault();
+                $(this).parent('div').remove(); //Remove field html
+                x--; //Decrement field counter
+            });
+        });
+    </script>
+
+    {{-- caculate total expense--}}
+    <script>
+
+        $('.item_price').keyup(function () {
+
+            var sum = 0;
+            $('.item_price').each(function () {
+                sum += Number($(this).val());
+            });
+            console.log(sum);
+            document.getElementById("totalPrice").innerHTML = sum;
+
+        });
+
     </script>
 @endsection

@@ -100,13 +100,31 @@
 {{--        <li id="active_ad"><a href="{{route('admin.advertisement')}}"> <i class="fab fa-adversal"></i> Advertisement</a></li>--}}
 
         <li>
-            <a href="#sm_base" data-toggle="collapse">
+            <a href="#meals" data-toggle="collapse">
                 <i class="fas fa-cog fa-cutlery"></i> Meal
             </a>
-            <ul id="sm_base" class="list-unstyled collapse">
+            <ul id="meals" class="list-unstyled collapse">
                 <li><a href="{{route('meal.create')}}"> <i class="fa fa-fw fa-cog"> </i> Add Meal</a></li>
-                <li><a href="{{route('meal.create')}}"> <i class="fa fa-fw fa-cog"> </i> Add Meal</a></li>
+                <li><a href="{{route('meal.index')}}"> <i class="fa fa-fw fa-cog"> </i> My Added Meal</a></li>
 
+            </ul>
+        </li>
+        <li>
+            <a href="#ledger" data-toggle="collapse">
+                <i class="fas fa-cog fa-cutlery"></i> Ledger
+            </a>
+            <ul id="ledger" class="list-unstyled collapse">
+                <li><a href="{{route('ledger.index')}}"> <i class="fa fa-fw fa-cog"> </i>Ledger List</a></li>
+
+            </ul>
+        </li>
+        <li>
+            <a href="#expenses" data-toggle="collapse">
+                <i class="fas fa-cog fa-cutlery"></i> Expense
+            </a>
+            <ul id="expenses" class="list-unstyled collapse">
+                <li><a href="{{route('expense.create')}}"> <i class="fa fa-fw fa-cog"> </i>Create Expenses</a></li>
+                <li><a href="{{route('expense.index')}}"> <i class="fa fa-fw fa-cog"> </i>Expenses List</a></li>
             </ul>
         </li>
 

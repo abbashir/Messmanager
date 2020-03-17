@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Admin\Admin;
+use App\Ledger;
 use App\Meal;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -17,7 +18,8 @@ class MealController extends Controller
      */
     public function index()
     {
-        //
+        $meals = Meal::orderBy('date', 'desc')->where('manager_id', Auth::guard('admin')->id())->get();
+        return view('admin.pages.meal.index', compact('meals'));
     }
 
     /**
@@ -27,8 +29,17 @@ class MealController extends Controller
      */
     public function create()
     {
-        $borders = Admin::where('isadmin', 0)->get();
-        return view('admin.pages.addmeal', compact('borders'));
+        $ledgers = Ledger::where('active_status', 1)->first();
+        $ledgers = json_decode($ledgers->borders, true);
+        $border_id = array();
+        foreach ($ledgers as $key => $value) {
+            $border_id[] = $key;
+        }
+
+        $borders = Admin::whereIn('id', $border_id)->get();
+
+        $ledgers = Ledger::where('active_status', 1)->get();
+        return view('admin.pages.meal.create', compact('borders', 'ledgers'));
     }
 
     /**
@@ -42,7 +53,7 @@ class MealController extends Controller
         $today_total_meal = 0;
         foreach (array_combine($request->border_id, $request->meal_quantity) as $id => $quantity) {
             $today_total_meal += $quantity;
-            $meal_details[$id]=$quantity;
+            $meal_details[$id] = $quantity;
         }
 
         $meal = new Meal();
@@ -54,7 +65,7 @@ class MealController extends Controller
 
         //redirect
         Session()->flash('success', 'meal created!');
-        return redirect()->back();
+        return redirect()->route('meal.index');
     }
 
     /**

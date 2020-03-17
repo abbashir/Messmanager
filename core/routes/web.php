@@ -32,6 +32,8 @@ Route::middleware(['Admin.Auth'])->prefix('admin')->namespace('Admin')->name('ad
 
 Route::resource('borders', 'BorderController');
 Route::resource('meal', 'MealController');
+Route::resource('ledger', 'LedgerController');
+Route::resource('expense', 'ExpensesController');
 /*
 |--------------------------------------------------------------------------
 | Admin Routes End
