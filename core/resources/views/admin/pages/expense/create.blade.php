@@ -36,7 +36,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <input type="text" name="quantity[]" class="form-control"
-                                       placeholder="Quantity [optional]" required>
+                                       placeholder="Quantity [optional]">
                             </div>
 
                         </div>
@@ -93,7 +93,7 @@
                 '                        <div class="col-md-3">' +
                 '                            <div class="form-group">' +
                 '                                <input type="text" name="quantity[]" class="form-control"' +
-                '                                       placeholder="Quantity [optional]" required>' +
+                '                                       placeholder="Quantity [optional]">' +
                 '                            </div>' +
                 '' +
                 '                        </div>' +

@@ -12,7 +12,7 @@
 |--------------------------------------------------------------------------
 */
 Route::get('/', 'Admin\AdminAuthController@ShowLoginForm')->name('admin.login');
-Route::post('/', 'Admin\AdminAuthController@LoginAction')->name('admin.login');
+Route::post('/admin', 'Admin\AdminAuthController@LoginAction')->name('admin.login');
 
 Route::middleware(['Admin.Auth'])->prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
 

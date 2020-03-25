@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Expense;
+use App\Ledger;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ExpensesController extends Controller
 {
@@ -34,8 +38,28 @@ class ExpensesController extends Controller
      */
     public function store(Request $request)
     {
-        return  $request->all();
-    }
+
+        $expense = new Expense();
+        $ledgers = Ledger::where('active_status', 1)->first();
+
+        $tp = 0;
+        foreach ( $request->price as $p) {
+            $tp+=$p;
+        }
+        $expense->ledger_id = $ledgers->id;
+        $expense->manager_id = Auth::guard('admin')->user()->id;
+        $expense->date = Carbon::parse($request->expense_date)->format('d/m/Y');
+        $expense->item_name = json_encode($request->item_name);
+        $expense->quantity = json_encode($request->quantity);
+        $expense->price = json_encode($request->price);
+        $expense->total_price = $tp;
+        $expense->save();
+
+        //redirect
+        Session()->flash('success', 'Expense created!');
+        return redirect()->route('meal.index');
+
+}
 
     /**
      * Display the specified resource.
