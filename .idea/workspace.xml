@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="779eebed-56fa-40a6-b811-c09f8e836f99" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/core/resources/views/admin/pages/expense/expense_byID.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/app/Expense.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/app/Expense.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/app/Http/Controllers/ExpensesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/app/Http/Controllers/ExpensesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/database/migrations/2020_03_14_173630_create_expenses_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/database/migrations/2020_03_14_173630_create_expenses_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/resources/views/admin/pages/expense/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/resources/views/admin/pages/expense/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/resources/views/admin/pages/expense/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/resources/views/admin/pages/expense/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -122,13 +123,14 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/core/resources/views/admin/pages/expense" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="terminal" />
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/assets/admin/js/jquery-2.1.11.min.js" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\laragon\www\Messmanager\core\resources\views\admin\pages\expense" />
       <recent name="D:\laragon\www\Messmanager\core" />
       <recent name="D:\laragon\www\cms\core\resources\views\admin" />
       <recent name="D:\laragon\www\cms\assets\admin" />
@@ -155,6 +157,8 @@
       <workItem from="1584528643845" duration="209000" />
       <workItem from="1584613514984" duration="60000" />
       <workItem from="1585158791848" duration="4019000" />
+      <workItem from="1585198478554" duration="17862000" />
+      <workItem from="1585368632379" duration="4714000" />
     </task>
     <servers />
   </component>
@@ -162,6 +166,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1585213364601">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="413" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1585213364601" />
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1584613572069">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -174,5 +182,9 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1584291478723" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1585212271134">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1585212271134" />
   </component>
 </project>

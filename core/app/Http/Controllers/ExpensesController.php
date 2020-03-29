@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Admin\Admin;
 use App\Expense;
 use App\Ledger;
 use Carbon\Carbon;
@@ -17,6 +18,10 @@ class ExpensesController extends Controller
      */
     public function index()
     {
+        $expense = Expense::all();
+        $ledgers = Ledger::all();
+        $borders = Admin::where('isadmin', 0)->get();
+        return view('admin.pages.expense.index',compact('borders','ledgers'));
 
     }
 
@@ -33,7 +38,7 @@ class ExpensesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -43,8 +48,8 @@ class ExpensesController extends Controller
         $ledgers = Ledger::where('active_status', 1)->first();
 
         $tp = 0;
-        foreach ( $request->price as $p) {
-            $tp+=$p;
+        foreach ($request->price as $p) {
+            $tp += $p;
         }
         $expense->ledger_id = $ledgers->id;
         $expense->manager_id = Auth::guard('admin')->user()->id;
@@ -57,25 +62,25 @@ class ExpensesController extends Controller
 
         //redirect
         Session()->flash('success', 'Expense created!');
-        return redirect()->route('meal.index');
+        return redirect()->route('expense.index');
 
-}
+    }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -86,8 +91,8 @@ class ExpensesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -98,7 +103,7 @@ class ExpensesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

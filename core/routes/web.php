@@ -34,6 +34,8 @@ Route::resource('borders', 'BorderController');
 Route::resource('meal', 'MealController');
 Route::resource('ledger', 'LedgerController');
 Route::resource('expense', 'ExpensesController');
+
+Route::post('show-ledger-byid', 'GeneralController@ShowExpenseByUser')->name('show_ledger');
 /*
 |--------------------------------------------------------------------------
 | Admin Routes End
