@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Expense;
 use App\Http\Controllers\Controller;
+use App\Ledger;
+use App\Meal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +15,7 @@ class AdminAuthController extends Controller
     public function ShowLoginForm()
     {
 
-        if (Auth::guard('admin')->check()){
+        if (Auth::guard('admin')->check()) {
             return redirect()->route('admin.dashboard');
         }
 
@@ -26,7 +29,7 @@ class AdminAuthController extends Controller
         //return $request->all();
         //validation
         $this->validate($request, [
-            'userName'   => 'required',
+            'userName' => 'required',
             'password' => 'required|min:5'
         ]);
 
@@ -35,7 +38,7 @@ class AdminAuthController extends Controller
             //redirect
             Session()->flash('success', 'You are successfully logged in !');
             return redirect()->route('admin.dashboard');
-        }else{
+        } else {
             //redirect
             Session()->flash('warning', 'Please enter correct UserName and password!');
             return redirect()->route('admin.login');
@@ -47,7 +50,12 @@ class AdminAuthController extends Controller
     //dashboard
     public function dashboard()
     {
-        return view('admin.pages.dashboard');
+        $active_ledger = Ledger::where('active_status', 1)->first();
+        $expenses = Expense::where('ledger_id', $active_ledger->id)->get();
+        $meals = Meal::where('ledger_id', $active_ledger->id)->get();
+
+
+        return view('admin.pages.dashboard', compact('expenses','active_ledger','meals'));
     }
 
     //logout

@@ -5,7 +5,7 @@
 
     <div class="card mb-4">
         <div class="card-header bg-white font-weight-bold">
-            Meal List
+            My added meal in <span class="text-info">{{$active_ledger->name}}</span> ledger
             <a href="{{route('meal.create')}}"
                class="btn btn-primary btn-md float-right customs_btn" >
                 <i class="fa fa-plus"></i> Create

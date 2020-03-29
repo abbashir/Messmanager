@@ -15,6 +15,7 @@ class CreateMealsTable extends Migration
     {
         Schema::create('meals', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('ledger_id');
             $table->string('date');
             $table->integer('manager_id');
             $table->float('today_total_meal');

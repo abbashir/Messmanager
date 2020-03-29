@@ -13,9 +13,9 @@
                 @csrf
                 <div class="form-group">
                     <label for="inputEmail3" class="col-form-label">Ledger</label>
-                    <input class="form-control" name="date" value="{{$ledgers[0]['name']}}" disabled>
+                    <input type="text" class="form-control" value="{{$ledgers[0]['name']}}" disabled>
+                    <input type="hidden" name="ledger_id" value="{{$ledgers[0]['id']}}" >
                 </div>
-
                 <div class="form-group">
                     <label for="inputEmail3" class="col-form-label">Select Date</label>
                     <input id="datepicker" class="form-control" name="date" placeholder="Select" required>

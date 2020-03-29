@@ -10,4 +10,9 @@ class Expense extends Model
     {
         return $this->belongsTo('app\Admin\Admin','manager_id','id');
     }
+    public function ledger()
+    {
+        return $this->belongsTo('app\Ledger','ledger_id','id');
+    }
+
 }

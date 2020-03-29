@@ -3,8 +3,11 @@
 @section('title', 'Admin Dashboard')
 @section('body')
 
-
-    <h2 class="mb-4">Dashboard</h2>
+    @php $total_expense = 0 ; @endphp
+    @foreach($expenses as $expense)
+        @php $total_expense += $expense->total_price ; @endphp
+    @endforeach
+    <h2 class="mb-4">Ledger: {{$active_ledger->name}}</h2>
 
     <div class="row mb-4">
         <div class="col-md-4">
@@ -17,7 +20,7 @@
                 <div class="flex-grow-1 bg-white p-4">
                     <a href="" style="text-decoration: none;"><p class="text-uppercase text-secondary mb-0">Total
                             Cost</p></a>
-                    <h3 class="font-weight-bold mb-0">9777</h3>
+                    <h3 class="font-weight-bold mb-0">{{$total_expense}}</h3>
                 </div>
             </div>
         </div>
@@ -67,7 +70,9 @@
             padding: 8px;
         }
 
-        tr:nth-child(even){background-color: #f2f2f2}
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
     </style>
 
     <div class="row " style="overflow-x:auto;">

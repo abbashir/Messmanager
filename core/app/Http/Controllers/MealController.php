@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Admin\Admin;
+use App\Expense;
 use App\Ledger;
 use App\Meal;
 use Carbon\Carbon;
@@ -18,8 +19,9 @@ class MealController extends Controller
      */
     public function index()
     {
-        $meals = Meal::orderBy('date', 'desc')->where('manager_id', Auth::guard('admin')->id())->get();
-        return view('admin.pages.meal.index', compact('meals'));
+        $active_ledger = Ledger::where('active_status', 1)->first();
+        $meals = Meal::orderBy('date', 'desc')->where('ledger_id', $active_ledger->id)->where('manager_id', Auth::guard('admin')->id())->get();
+        return view('admin.pages.meal.index', compact('meals','active_ledger'));
     }
 
     /**
@@ -57,6 +59,7 @@ class MealController extends Controller
         }
 
         $meal = new Meal();
+        $meal->ledger_id = $request->ledger_id;
         $meal->date = Carbon::parse($request->date)->format('d/m/Y');
         $meal->manager_id = Auth::guard('admin')->user()->id;
         $meal->today_total_meal = $today_total_meal;
