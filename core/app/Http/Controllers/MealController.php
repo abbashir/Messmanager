@@ -58,6 +58,7 @@ class MealController extends Controller
             $meal_details[$id] = $quantity;
         }
 
+
         $meal = new Meal();
         $meal->ledger_id = $request->ledger_id;
         $meal->date = Carbon::parse($request->date)->format('d/m/Y');

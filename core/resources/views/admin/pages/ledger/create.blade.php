@@ -10,7 +10,6 @@
     </h2>
 
     <div class="container">
-
         <div class="card mb-4">
             <div class="card-body">
                 <form method="POST" action="{{route('ledger.store')}}" enctype="multipart/form-data">

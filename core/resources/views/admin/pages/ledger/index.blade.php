@@ -17,8 +17,8 @@
                 <tr>
                     <th scope="col">SN</th>
                     <th scope="col">Name</th>
-                    <th scope="col">border Q</th>
-                    <th scope="col">status</th>
+                    <th scope="col">Borders</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Action</th>
                 </tr>
                 </thead>
@@ -27,7 +27,21 @@
                     <tr>
                         <th scope="row">{{$loop->iteration}}</th>
                         <td>{{$ledger->name}}</td>
-                        <td>{{$ledger->borders}}</td>
+                        <td>
+                            <div class="show">
+                                <div class="alert alert-primary" role="alert">
+                                    Hover to see  Border
+                                </div>
+                                <ul class="list-categories list-group">
+                                    @php $ledger_details = json_decode($ledger->borders); @endphp
+                                    @foreach($ledger_details as $border_id => $border_name)
+                                        <li class="list-group-item disabled">
+                                            {{$border_name}}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </td>
                         <td>
                             @if ($ledger->active_status==1)
                                 <span class="badge  badge-pill  badge-success">Active</span>

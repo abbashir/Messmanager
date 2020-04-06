@@ -141,3 +141,19 @@
 .input-group-addon:not(:first-child) {
     border-left: 0;
 }
+
+/*list style*/
+.show:hover ul.list-categories {
+    max-height: inherit;
+    opacity: 1;
+}
+
+.list-categories {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+    max-height: 0px;
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity 300ms ease;
+}

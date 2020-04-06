@@ -7,6 +7,12 @@
     @foreach($expenses as $expense)
         @php $total_expense += $expense->total_price ; @endphp
     @endforeach
+
+    @php $total_meal = 0 ; @endphp
+    @foreach($meals as $meal)
+        @php $total_meal += $meal->today_total_meal ; @endphp
+    @endforeach
+
     <h2 class="mb-4">Ledger: {{$active_ledger->name}}</h2>
 
     <div class="row mb-4">
@@ -35,7 +41,7 @@
                 <div class="flex-grow-1 bg-white p-4">
                     <a href="" style="text-decoration: none;"><p class="text-uppercase text-secondary mb-0">Total
                             Meal</p></a>
-                    <h3 class="font-weight-bold mb-0">7676</h3>
+                    <h3 class="font-weight-bold mb-0">{{$total_meal}}</h3>
                 </div>
             </div>
         </div>
@@ -51,7 +57,7 @@
                     <a href="" style="text-decoration: none;"><p class="text-uppercase text-secondary mb-0">Current Meal
                             Rate</p></a>
 
-                    <h3 class="font-weight-bold mb-0">35</h3>
+                    <h3 class="font-weight-bold mb-0">{{number_format($total_expense/$total_meal, 2) }}</h3>
                 </div>
             </div>
         </div>

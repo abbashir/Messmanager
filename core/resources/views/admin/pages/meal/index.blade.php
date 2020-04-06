@@ -7,7 +7,7 @@
         <div class="card-header bg-white font-weight-bold">
             My added meal in <span class="text-info">{{$active_ledger->name}}</span> ledger
             <a href="{{route('meal.create')}}"
-               class="btn btn-primary btn-md float-right customs_btn" >
+               class="btn btn-primary btn-md float-right customs_btn">
                 <i class="fa fa-plus"></i> Create
             </a>
         </div>
@@ -18,7 +18,7 @@
                     <th scope="col">SN</th>
                     <th scope="col">Date</th>
                     <th scope="col">Total Meal</th>
-                    <th scope="col">borders</th>
+                    <th scope="col" class="text-center">Details</th>
                     <th scope="col">Action</th>
                 </tr>
                 </thead>
@@ -28,12 +28,22 @@
                         <th scope="row">{{$loop->iteration}}</th>
                         <td>{{$meal->date}}</td>
                         <td>{{$meal->today_total_meal}}</td>
-                        <td>{{$meal->meal_details}}</td>
                         <td>
-                            <button type="submit" class="btn btn-info font-weight-bold"
-                                    data-id="{{$meal->id}}" data-toggle="modal" data-target="#ac_clo">
-                                <i class="fa fa-edit"></i> View
-                            </button>
+                            <div class="show">
+                                <div class="alert alert-primary" role="alert">
+                                    Hover to see  Name : Meal
+                                </div>
+                                <ul class="list-categories list-group">
+                                    @php $meal_details = json_decode($meal->meal_details); @endphp
+                                    @foreach($meal_details as $border_id => $meal_quantity)
+                                        <li class="list-group-item disabled">
+                                            {{get_user($border_id)}} : {{$meal_quantity}}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </td>
+                        <td>
                             <button type="submit" class="btn btn-success font-weight-bold"
                                     data-id="{{$meal->id}}" data-toggle="modal" data-target="#ac_clo">
                                 <i class="fa fa-edit"></i> Edit

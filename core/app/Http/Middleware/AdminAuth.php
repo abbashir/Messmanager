@@ -18,7 +18,7 @@ class AdminAuth
     {
         if (!Auth::guard('admin')->user())
         {
-            return redirect()->route('admin.login');
+            return redirect()->route('admin.login1');
         }
         return $next($request);
     }

@@ -15,7 +15,7 @@ class BorderController extends Controller
      */
     public function index()
     {
-        $borders = Admin::all();
+        $borders = Admin::where('isadmin',0)->get();
         return view('admin.pages.borders', compact('borders'));
     }
 
