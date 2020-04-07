@@ -18,7 +18,6 @@ class ExpensesController extends Controller
      */
     public function index()
     {
-        $expense = Expense::all();
         $ledgers = Ledger::all();
         $borders = Admin::where('isadmin', 0)->get();
         return view('admin.pages.expense.index',compact('borders','ledgers'));
@@ -32,7 +31,8 @@ class ExpensesController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.expense.create');
+        $active_ledger = Ledger::where('active_status', 1)->first();
+        return view('admin.pages.expense.create',compact('active_ledger'));
     }
 
     /**

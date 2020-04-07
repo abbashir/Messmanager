@@ -62,6 +62,9 @@
                                 </button>
                             @endif
 
+                                <a href="{{route('ledger.edit',$ledger->id)}}" class="btn btn-success font-weight-bold">
+                                    <i class="fa fa-edit"></i> Edit
+                                </a>
                         </td>
                     </tr>
                 @endforeach

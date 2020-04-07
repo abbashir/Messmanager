@@ -32,7 +32,10 @@
                         <td>{{$border->email}}</td>
                         <td>
                             <button type="submit" class="btn btn-info font-weight-bold"
-
+                                    data-name="{{$border->name}}"
+                                    data-phone="{{$border->phone}}"
+                                    data-email="{{$border->email}}"
+                                    data-id="{{$border->id}}"
                                     data-toggle="modal" data-target="#edit_border">
                                 <i class="fa fa-edit"></i> Edit
                             </button>
@@ -118,12 +121,14 @@
                 </div>
                 <form action="{{route('borders.update',1)}}" method="post">
                     @csrf
+                    @method('PUT')
                     <div class="modal-body">
 
+                        <input type="hidden" name="id" id="id">
                         <div class="col-md-12 ">
                             <div class="form-group">
                                 <label for="header_subtitle"><strong>Name</strong></label>
-                                <input class="form-control form-control-lg mb-3" type="text" name="name" required>
+                                <input class="form-control form-control-lg mb-3" type="text" name="name" id="name" required>
                             </div>
                         </div>
 
@@ -131,32 +136,16 @@
                         <div class="col-md-12 ">
                             <div class="form-group">
                                 <label for="header_subtitle"><strong>Phone</strong></label>
-                                <input class="form-control form-control-lg mb-3" type="text" name="phone" required>
+                                <input class="form-control form-control-lg mb-3" type="text" name="phone" id="phone" required>
                             </div>
                         </div>
 
                         <div class="col-md-12 ">
                             <div class="form-group">
                                 <label for="header_subtitle"><strong>Email</strong></label>
-                                <input class="form-control form-control-lg mb-3" type="email" name="email" required>
+                                <input class="form-control form-control-lg mb-3" type="email" name="email" id="email" required>
                             </div>
                         </div>
-
-                        <div class="col-md-12 ">
-                            <div class="form-group">
-                                <label for="header_subtitle"><strong>userName</strong></label>
-                                <input class="form-control form-control-lg mb-3" type="text" name="user_name" required>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 ">
-                            <div class="form-group">
-                                <label for="header_subtitle"><strong>password</strong></label>
-                                <input class="form-control form-control-lg mb-3" type="password" name="password"
-                                       required>
-                            </div>
-                        </div>
-
 
                     </div>
                     <div class="modal-footer">
@@ -204,16 +193,17 @@
             var button = $(event.relatedTarget);
 
             var name = button.data('name');
-            var icon = button.data('icon');
-            var link = button.data('link');
-            var socialId = button.data('id');
+            var phone = button.data('phone');
+            var email = button.data('email');
+            var id = button.data('id');
+
 
             var modal = $(this);
 
             modal.find('#name').val(name);
-            modal.find('#icon').val(icon);
-            modal.find('#link').val(link);
-            modal.find('#socialId').val(socialId);
+            modal.find('#phone').val(phone);
+            modal.find('#email').val(email);
+            modal.find('#id').val(id);
 
         })
     </script>

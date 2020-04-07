@@ -72,7 +72,9 @@ class LedgerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ledgers = Ledger::find($id);
+        $borders = Admin::where('isadmin', 0)->get();
+        return view('admin.pages.ledger.edit',compact('ledgers','borders'));
     }
 
     /**
@@ -84,7 +86,20 @@ class LedgerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $ledger = Ledger::find($id);
+
+        $request_values = $request->all();
+        unset($request_values['_token']);
+        unset($request_values['name']);
+        unset($request_values['_method']);
+
+        $ledger->name = $request->name;
+        $ledger->borders = json_encode($request_values);
+        $ledger->save();
+
+        //redirect
+        Session()->flash('success', 'successfully updated!');
+        return redirect()->route('ledger.index');
     }
 
     /**

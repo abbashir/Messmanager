@@ -44,10 +44,9 @@
                             </div>
                         </td>
                         <td>
-                            <button type="submit" class="btn btn-success font-weight-bold"
-                                    data-id="{{$meal->id}}" data-toggle="modal" data-target="#ac_clo">
+                            <a href="{{route('meal.edit',$meal->id)}}" class="btn btn-info font-weight-bold">
                                 <i class="fa fa-edit"></i> Edit
-                            </button>
+                            </a>
 
                         </td>
                     </tr>
@@ -56,10 +55,6 @@
             </table>
         </div>
     </div>
-
-
-
-
 
 @endsection
 
@@ -70,17 +65,5 @@
         $('#meals').addClass('show');
     </script>
 
-    {{--script for modal--}}
-    <script>
-        $('#ac_clo').on('show.bs.modal', function (event) {
-
-            var button = $(event.relatedTarget);
-            var id = button.data('id');
-            var status = button.data('status');
-            var modal = $(this);
-            modal.find('.modal-body #id').val(id);
-            modal.find('.modal-body #status').val(status);
-        })
-    </script>
 @endsection
 

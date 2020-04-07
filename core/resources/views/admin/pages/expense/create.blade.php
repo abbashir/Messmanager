@@ -5,7 +5,7 @@
     <h2 class="mb-4">Add Expense</h2>
     <div class="card mb-4">
         <div class="card-header bg-white font-weight-bold">
-            Add Expense
+            Add Expense for <span class="text-info">{{$active_ledger->name}}</span> ledger
 
             <span class=" float-right">
                  Total expense: <span class="text-danger"> <span id="totalPrice">00</span></span> TK.
@@ -68,7 +68,8 @@
 
     <script>
         $('#datepicker').datepicker({
-            uiLibrary: 'bootstrap'
+            uiLibrary: 'bootstrap',
+            format: 'dd/mm/yyyy'
         });
     </script>
     {{--dropdown active--}}

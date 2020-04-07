@@ -10,4 +10,8 @@ class Meal extends Model
     {
         return $this->belongsTo('app\Admin\Admin');
     }
+    public function ledger()
+    {
+        return $this->belongsTo('app\Ledger','ledger_id','id');
+    }
 }

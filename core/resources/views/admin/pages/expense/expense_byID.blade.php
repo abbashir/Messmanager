@@ -10,7 +10,7 @@
                 @php $name =  $expense->users->name; @endphp
                 @php $sum += $expense->total_price ; @endphp
             @endforeach
-            Name: <b>{{$name}}</b> | Total Expense : <b>{{$sum}}</b>
+            Name: <b>{{$name}}</b> | Total Expense of <span class="text-danger">{{$ledger->name}}</span> : <b>{{$sum}}</b>
         </div>
         @foreach($expenses as $expense)
             @php

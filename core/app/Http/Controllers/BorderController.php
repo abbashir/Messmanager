@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Admin\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use PhpOffice\PhpSpreadsheet\Style\Border;
 
 class BorderController extends Controller
 {
@@ -80,7 +81,15 @@ class BorderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $borders = Admin::find($request->id);
+        $borders->name = $request->name;
+        $borders->phone = $request->phone;
+        $borders->email = $request->email;
+        $borders->save();
+
+        //redirect
+        Session()->flash('success', 'Updated !');
+        return redirect()->back();
     }
 
     /**

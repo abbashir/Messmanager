@@ -21,7 +21,7 @@ class MealController extends Controller
     {
         $active_ledger = Ledger::where('active_status', 1)->first();
         $meals = Meal::orderBy('date', 'desc')->where('ledger_id', $active_ledger->id)->where('manager_id', Auth::guard('admin')->id())->get();
-        return view('admin.pages.meal.index', compact('meals','active_ledger'));
+        return view('admin.pages.meal.index', compact('meals', 'active_ledger'));
     }
 
     /**
@@ -61,7 +61,7 @@ class MealController extends Controller
 
         $meal = new Meal();
         $meal->ledger_id = $request->ledger_id;
-        $meal->date = Carbon::parse($request->date)->format('d/m/Y');
+        $meal->date = $request->date;
         $meal->manager_id = Auth::guard('admin')->user()->id;
         $meal->today_total_meal = $today_total_meal;
         $meal->meal_details = json_encode($meal_details);
@@ -91,7 +91,8 @@ class MealController extends Controller
      */
     public function edit($id)
     {
-        //
+        $meals = Meal::find($id);
+        return view('admin.pages.meal.edit', compact('meals'));
     }
 
     /**
@@ -103,7 +104,22 @@ class MealController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $meal = Meal::find($id);
+
+        $today_total_meal = 0;
+        foreach (array_combine($request->border_id, $request->meal_quantity) as $id => $quantity) {
+            $today_total_meal += $quantity;
+            $meal_details[$id] = $quantity;
+        }
+
+        $meal->date = $request->date;
+        $meal->today_total_meal = $today_total_meal;
+        $meal->meal_details = json_encode($meal_details);
+        $meal->save();
+
+        //redirect
+        Session()->flash('success', 'meal updated!');
+        return redirect()->route('meal.index');
     }
 
     /**

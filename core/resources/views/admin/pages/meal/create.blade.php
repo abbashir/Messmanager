@@ -55,7 +55,8 @@
 
     <script>
         $('#datepicker').datepicker({
-            uiLibrary: 'bootstrap'
+            uiLibrary: 'bootstrap',
+            format: 'dd/mm/yyyy'
         });
     </script>
     {{--dropdown active--}}

@@ -57,7 +57,13 @@
                     <a href="" style="text-decoration: none;"><p class="text-uppercase text-secondary mb-0">Current Meal
                             Rate</p></a>
 
-                    <h3 class="font-weight-bold mb-0">{{number_format($total_expense/$total_meal, 2) }}</h3>
+                    <h3 class="font-weight-bold mb-0">
+                        @if($total_meal != 0)
+                            {{number_format($total_expense/$total_meal, 2) }}
+                        @else
+                            0
+                        @endif
+                    </h3>
                 </div>
             </div>
         </div>

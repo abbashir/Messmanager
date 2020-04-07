@@ -1,1 +1,17 @@
-This project for our home spent calculation
+Pending Work
+************************************
+1. border
+    a. edit == Done
+
+2. Meal
+    a. edit == Done
+
+3. Ledger
+    a. edit == Done
+
+4. Expence
+    a. edit
+
+5. Dashboard
+    a. personal
+
