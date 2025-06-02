@@ -12,6 +12,9 @@ This document lists the main features of the MessManager application.
 ## Password Management
 - Allow users to change their password.
 
+## Mess Manager Management
+- Create, Read, Update, and Delete (CRUD) operations for Mess Manager records.
+
 ## Border Management
 - Create, Read, Update, and Delete (CRUD) operations for border records.
 
